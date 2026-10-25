@@ -154,6 +154,6 @@ This project retains the original ISC license and copyright notice. See
 
 Upstream references:
 
-- [Original geojson.io repository](https://github.com/mapbox/geojson.io)
+
 - [GeoJSON specification](https://geojson.org/)
 - [Mapbox](https://www.mapbox.com/)
