@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="application-name" content="geovizor" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#070a0f" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #070a0f;
+        color: #e2e8f0;
+      }
+
+      .geo-boot {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', sans-serif;
+      }
+
+      .geo-boot-mark {
+        position: relative;
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #5eead4, #0d9488);
+        box-shadow: 0 0 42px rgba(45, 212, 191, 0.22);
+        animation: geo-boot-pulse 1.8s ease-in-out infinite;
+      }
+
+      .geo-boot-mark::before {
+        content: '';
+        position: absolute;
+        inset: 10px;
+        border: 2px solid rgba(7, 10, 15, 0.6);
+        border-radius: 10px;
+      }
+
+      .geo-boot-mark::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #070a0f;
+        transform: translate(-50%, -50%);
+      }
+
+      .geo-boot-title {
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+
+      .geo-boot-subtitle {
+        margin-top: 5px;
+        color: #94a3b8;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .geo-boot-bar {
+        width: 156px;
+        height: 3px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #1e293b;
+      }
+
+      .geo-boot-bar span {
+        display: block;
+        width: 45%;
+        height: 100%;
+        border-radius: inherit;
+        background: #2dd4bf;
+        animation: geo-boot-slide 1.25s ease-in-out infinite;
+      }
+
+      @keyframes geo-boot-pulse {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.9;
+        }
+        50% {
+          transform: translateY(-4px);
+          opacity: 1;
+        }
+      }
+
+      @keyframes geo-boot-slide {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(260%);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .geo-boot-mark,
+        .geo-boot-bar span {
+          animation: none;
+        }
+        .geo-boot-bar span {
+          width: 100%;
+        }
+      }
+    </style>
+    <link rel="preconnect" href="https://api.mapbox.com/" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="manifest" href="%BASE_URL%manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Application scripts are loaded by the build. -->
+  </head>
+  <body>
+    <div id="root">
+      <div class="geo-boot" role="status" aria-live="polite">
+        <div class="geo-boot-mark" aria-hidden="true"></div>
+        <div>
+          <div class="geo-boot-title">geovizor</div>
+          <div class="geo-boot-subtitle">Loading map workspace...</div>
+        </div>
+        <div class="geo-boot-bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+    <noscript>
+      geovizor requires JavaScript. Please enable JavaScript to use the map
+      editor.
+    </noscript>
+    <script type="module" src="./pages/index.tsx"></script>
+  </body>
+</html>
